@@ -11,31 +11,31 @@ import com.ramvp.lojaDeJogos.repository.JogoRepository;
 
 @Service
 public class JogoService {
-	
+
 	@Autowired
 	private JogoRepository repository;
-	
+
 	public List<Jogo> findAll() {
 		return repository.findAll();
 	}
-	
+
 	public Optional<Jogo> findById(int id) {
 		return repository.findById(id);
 	}
-	
+
 	public List<Jogo> findByNome(String nome) {
 		return repository.findByNomeContainingIgnoreCase(nome);
 	}
-	
-	public Jogo update (Jogo jogo) {
+
+	public Jogo save(Jogo jogo) {
 		return repository.save(jogo);
 	}
-	
-	public Jogo save (Jogo jogo) {
+
+	public Jogo update(Jogo jogo) {
 		return repository.save(jogo);
 	}
-	
-	public void delete (Integer id) {
+
+	public void delete(Integer id) {
 		repository.deleteById(id);
 	}
 
