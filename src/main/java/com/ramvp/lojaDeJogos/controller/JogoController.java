@@ -44,7 +44,8 @@ public class JogoController {
 	
 	@GetMapping("/deletar/{id}")
 	public ResponseEntity<Jogo> delete(@PathVariable int id) {
-		return ResponseEntity.status(HttpStatus.OK).build(service.delete(id));
+		service.delete(id);
+		return ResponseEntity.status(HttpStatus.OK).build();
 	}
 	
 }
