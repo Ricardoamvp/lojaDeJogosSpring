@@ -1,5 +1,6 @@
 package com.ramvp.lojaDeJogos.controller;
 
+import com.ramvp.lojaDeJogos.exception.categoria.CategoriaNotFoundException;
 import com.ramvp.lojaDeJogos.model.Categoria;
 import com.ramvp.lojaDeJogos.service.CategoriaService;
 import com.ramvp.lojaDeJogos.DTOs.MessageDTO;
@@ -24,13 +25,8 @@ public class CategoriaController {
     }
 
     @GetMapping("/id/{id}")
-    public ResponseEntity<Categoria> findById(@PathVariable Integer id) {
-        Optional<Categoria> c = service.findById(id);
-
-        if(c.isPresent())
-            return ResponseEntity.status(HttpStatus.OK).body(c.get());
-        else
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    public ResponseEntity<Categoria> findById(@PathVariable Integer id) throws CategoriaNotFoundException {
+        return ResponseEntity.status(HttpStatus.OK).body(service.findById(id));
     }
 
     @GetMapping("/nome/{nome}")
