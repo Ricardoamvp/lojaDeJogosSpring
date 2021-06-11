@@ -21,7 +21,7 @@ public class JogoController {
 	private JogoService service;
 
 	@GetMapping("/all")
-	public ResponseEntity<List<Jogo>> findAll() {
+	public ResponseEntity<List<Jogo>> findAll() throws JogoNotFoundException {
 		return ResponseEntity.status(HttpStatus.OK).body(service.findAll());
 	}
 
