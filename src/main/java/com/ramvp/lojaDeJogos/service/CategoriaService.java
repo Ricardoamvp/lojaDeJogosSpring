@@ -15,22 +15,28 @@ public class CategoriaService {
     @Autowired
     private CategoriaRepository repository;
 
-    public List<Categoria> findAll() {
-
-        return repository.findAll();
+    public List<Categoria> findAll() throws CategoriaNotFoundException {
+        List<Categoria> listaDeCategorias = repository.findAll();
+        if (listaDeCategorias.isEmpty())
+            throw new CategoriaNotFoundException("Nenhuma categoria encontrada");
+        else
+            return listaDeCategorias;
     }
 
     public Categoria findById(Integer id) throws CategoriaNotFoundException {
         Optional<Categoria> a = repository.findById(id);
-        if(a.isEmpty())
-            throw new CategoriaNotFoundException("teste humilde");
+        if (a.isEmpty())
+            throw new CategoriaNotFoundException("Não existe nenhuma categoria com esse id");
         else
-        return a.get();
+            return a.get();
     }
 
-    public List<Categoria> findByNome(String nome) {
-
-        return repository.findByNomeContainingIgnoreCase(nome);
+    public List<Categoria> findByNome(String nome) throws CategoriaNotFoundException {
+        List<Categoria> a = repository.findByNomeContainingIgnoreCase(nome);
+        if (a.isEmpty())
+            throw new CategoriaNotFoundException("Não existem categorias com esse nome");
+        else
+            return a;
     }
 
     public Categoria save(Categoria categoria) {
@@ -43,9 +49,9 @@ public class CategoriaService {
         return repository.save(categoria);
     }
 
-    public void delete(Integer id) {
-
-        repository.deleteById(id);
+    public void delete(Integer id) throws CategoriaNotFoundException {
+        Categoria delete = findById(id);
+        repository.delete(delete);
     }
 
 }

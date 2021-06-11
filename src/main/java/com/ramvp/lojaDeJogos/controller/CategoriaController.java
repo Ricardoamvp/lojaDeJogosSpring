@@ -20,7 +20,7 @@ public class CategoriaController {
     private CategoriaService service;
 
     @GetMapping("/all")
-    public ResponseEntity<List<Categoria>> findAll() {
+    public ResponseEntity<List<Categoria>> findAll() throws CategoriaNotFoundException{
         return ResponseEntity.status(HttpStatus.OK).body(service.findAll());
     }
 
@@ -30,7 +30,7 @@ public class CategoriaController {
     }
 
     @GetMapping("/nome/{nome}")
-    public ResponseEntity<List<Categoria>> findByNome(String nome) {
+    public ResponseEntity<List<Categoria>> findByNome(@PathVariable String nome) throws CategoriaNotFoundException {
         return ResponseEntity.status(HttpStatus.OK).body(service.findByNome(nome));
     }
 
@@ -45,7 +45,7 @@ public class CategoriaController {
     }
 
     @DeleteMapping("/deletar/{id}")
-    public ResponseEntity<MessageDTO> delete(@PathVariable Integer id) {
+    public ResponseEntity<MessageDTO> delete(@PathVariable Integer id) throws CategoriaNotFoundException {
         service.delete(id);
         return ResponseEntity.status(HttpStatus.OK).body(new MessageDTO("Categoria deletada com sucesso"));
     }
