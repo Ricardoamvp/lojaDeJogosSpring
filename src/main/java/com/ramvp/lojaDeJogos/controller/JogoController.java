@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.ramvp.lojaDeJogos.DTOs.MessageDTO;
+import com.ramvp.lojaDeJogos.exception.jogo.JogoNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,12 +26,12 @@ public class JogoController {
 	}
 
 	@GetMapping("/id/{id}")
-	public ResponseEntity<Optional<Jogo>> findById(@PathVariable int id) {
+	public ResponseEntity<Jogo> findById(@PathVariable int id) throws JogoNotFoundException {
 		return ResponseEntity.status(HttpStatus.OK).body(service.findById(id));
 	}
 	
 	@GetMapping("/nome/{nome}")
-	public ResponseEntity<List<Jogo>> findByNome(@PathVariable String nome) {
+	public ResponseEntity<List<Jogo>> findByNome(@PathVariable String nome) throws JogoNotFoundException {
 		return ResponseEntity.status(HttpStatus.OK).body(service.findByNome(nome));
 	}
 	
@@ -45,7 +46,7 @@ public class JogoController {
 	}
 	
 	@DeleteMapping("/deletar/{id}")
-	public ResponseEntity<MessageDTO> delete(@PathVariable int id) {
+	public ResponseEntity<MessageDTO> delete(@PathVariable int id) throws JogoNotFoundException {
 		service.delete(id);
 		return ResponseEntity.status(HttpStatus.OK).body(new MessageDTO("Jogo deletado com sucesso"));
 	}
