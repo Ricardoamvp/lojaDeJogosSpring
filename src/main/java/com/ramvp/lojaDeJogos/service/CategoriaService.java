@@ -15,26 +15,32 @@ public class CategoriaService {
     private CategoriaRepository repository;
 
     public List<Categoria> findAll() {
+
         return repository.findAll();
     }
 
     public Optional<Categoria> findById(Integer id) {
+
         return repository.findById(id);
     }
 
     public List<Categoria> findByNome(String nome) {
+
         return repository.findByNomeContainingIgnoreCase(nome);
     }
 
     public Categoria save(Categoria categoria) {
+
         return repository.save(categoria);
     }
 
     public Categoria update(Categoria categoria) {
+
         return repository.save(categoria);
     }
 
     public void delete(Integer id) {
+
         repository.deleteById(id);
     }
 

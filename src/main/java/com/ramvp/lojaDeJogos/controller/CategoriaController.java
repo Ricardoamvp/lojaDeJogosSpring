@@ -2,7 +2,7 @@ package com.ramvp.lojaDeJogos.controller;
 
 import com.ramvp.lojaDeJogos.model.Categoria;
 import com.ramvp.lojaDeJogos.service.CategoriaService;
-import com.ramvp.lojaDeJogos.util.PayloadMessage;
+import com.ramvp.lojaDeJogos.DTOs.MessageDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -49,9 +49,9 @@ public class CategoriaController {
     }
 
     @DeleteMapping("/deletar/{id}")
-    public ResponseEntity<PayloadMessage> delete(@PathVariable Integer id) {
+    public ResponseEntity<MessageDTO> delete(@PathVariable Integer id) {
         service.delete(id);
-        return ResponseEntity.status(HttpStatus.OK).body(new PayloadMessage("Categoria deletada com sucesso"));
+        return ResponseEntity.status(HttpStatus.OK).body(new MessageDTO("Categoria deletada com sucesso"));
     }
 
 }

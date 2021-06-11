@@ -1,4 +1,4 @@
-package com.ramvp.lojaDeJogos.util;
+package com.ramvp.lojaDeJogos.DTOs;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,14 +9,10 @@ import java.time.ZonedDateTime;
 
 @Getter @Setter
 @NoArgsConstructor @AllArgsConstructor
-public class PayloadMessage {
+public class ErrorMessageDTO {
 
     private ZonedDateTime timestamp;
     private String message;
-
-    public PayloadMessage(String message) {
-        this.timestamp = ZonedDateTime.now();
-        this.message = message;
-    }
+    private String error;
 
 }

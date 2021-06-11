@@ -3,7 +3,7 @@ package com.ramvp.lojaDeJogos.controller;
 import java.util.List;
 import java.util.Optional;
 
-import com.ramvp.lojaDeJogos.util.PayloadMessage;
+import com.ramvp.lojaDeJogos.DTOs.MessageDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -45,9 +45,9 @@ public class JogoController {
 	}
 	
 	@DeleteMapping("/deletar/{id}")
-	public ResponseEntity<PayloadMessage> delete(@PathVariable int id) {
+	public ResponseEntity<MessageDTO> delete(@PathVariable int id) {
 		service.delete(id);
-		return ResponseEntity.status(HttpStatus.OK).body(new PayloadMessage("Jogo deletado com sucesso"));
+		return ResponseEntity.status(HttpStatus.OK).body(new MessageDTO("Jogo deletado com sucesso"));
 	}
 	
 }
